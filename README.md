@@ -45,32 +45,6 @@ Download them from the above links, and organize them as follows.
 ├── dataset
 │   ├── llava_dataset
 │   │   └── llava_instruct_150k.json
-│   ├── mapillary
-│   │   ├── config_v2.0.json
-│   │   ├── testing
-│   │   ├── training
-│   │   └── validation
-│   ├── reason_grasp
-│   │   └── ReasonGrasp
-│   │       ├── train
-│   │       ├── val
-│   │       └── explanatory
-│   ├── refer
-│   │   ├── images
-│   │   |   ├── saiapr_tc-12 
-│   │   |   └── mscoco
-│   │   |       └── images
-│   │   |           └── train2014
-│   │   ├── refclef
-│   │   ├── refcoco
-│   │   ├── refcoco+
-│   │   └── refcocog
-│   └── vlpart
-│       ├── paco
-│       │   └── annotations
-│       └── pascal_part
-│           ├── train.json
-│           └── VOCdevkit
 ```
 
 
