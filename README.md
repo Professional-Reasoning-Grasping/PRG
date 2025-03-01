@@ -11,6 +11,9 @@ In addition, we design the AdaptiveMixture fine-tuning module to enhance the mod
 Experimental results show that our method outperforms existing VLM-based grasping approaches in target recognition, grasp success rate, text output quality, and zero-shot capability, thereby improving the reliability of robots in the PRG task and their ability to address implicit instructions in professional domains. 
 
 ## model
+![The model generates grasp configurations and text
+responses based on visual and language instructions, as well
+as retrieved professional domain documents.](image/fig.png)
 
 ## Installation
 ```pip install -r requirements.txt```
