@@ -12,4 +12,4 @@ Experimental results show that our method outperforms existing VLM-based graspin
 
 ## Video
 
-![Video](image/video.mp4)
+https://github.com/user-attachments/assets/fe22cf8a-b482-4024-b2a8-fc0a8ef4de29
