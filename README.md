@@ -10,5 +10,8 @@ We further propose a grasping strategy that integrates multimodal Retrieval-Augm
 In addition, we design the AdaptiveMixture fine-tuning module to enhance the model's adaptability to long texts and multimodal inputs. 
 Experimental results show that our method outperforms existing VLM-based grasping approaches in target recognition, grasp success rate, text output quality, and zero-shot capability, thereby improving the reliability of robots in the PRG task and their ability to address implicit instructions in professional domains. 
 
-## model
-![Model introduction and real machine experiments]((https://github.com/Professional-Reasoning-Grasping/PRG/raw/refs/heads/main/image/video.mp4)
+## Video
+<video width="720" height="480" controls>
+  <source src="https://github.com/Professional-Reasoning-Grasping/PRG/raw/refs/heads/main/image/video.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
