@@ -11,4 +11,4 @@ In addition, we design the AdaptiveMixture fine-tuning module to enhance the mod
 Experimental results show that our method outperforms existing VLM-based grasping approaches in target recognition, grasp success rate, text output quality, and zero-shot capability, thereby improving the reliability of robots in the PRG task and their ability to address implicit instructions in professional domains. 
 
 ## model
-![Model introduction and real machine experiments](image/video.mp4)
+![Model introduction and real machine experiments](https://github.com/Professional-Reasoning-Grasping/PRG/blob/main/image/video.mp4))
