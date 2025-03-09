@@ -26,7 +26,6 @@ Training Process: Freeze Fenc, train Fdec, fine-tune F using AdaptiveMixture mod
 - PRG-4K (for professional reasoning grasping and long-text processing capabilities)
 - [LLaVA-Instruct-150k](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K/blob/main/llava_instruct_150k.json) (to retain original LLaVA visual reasoning capabilities)
 
-Training scripts will coming soon.
 
 
 ## Dataset
