@@ -63,12 +63,12 @@ class PRGMetaModel:
                 param.requires_grad = True
 
         grasp_decoder_params = {
-            'transformer_dim': self.visual_model.grasp_decoder.transformer_dim,  # 使用与原模型相同的 transformer_dim
-            'transformer': self.visual_model.grasp_decoder.transformer,  # 使用相同的 transformer
-            'num_multimask_outputs': self.visual_model.grasp_decoder.num_multimask_outputs,  # 同样的 mask 数量
-            'activation': self.visual_model.grasp_decoder.activation,  # 使用相同的激活函数
-            'iou_head_depth': self.visual_model.grasp_decoder.iou_head_depth,  # IoU 预测的层深度
-            'iou_head_hidden_dim': self.visual_model.grasp_decoder.iou_head_hidden_dim,  # IoU 预测的隐藏维度
+            'transformer_dim': self.visual_model.grasp_decoder.transformer_dim, 
+            'transformer': self.visual_model.grasp_decoder.transformer,
+            'num_multimask_outputs': self.visual_model.grasp_decoder.num_multimask_outputs, 
+            'activation': self.visual_model.grasp_decoder.activation, 
+            'iou_head_depth': self.visual_model.grasp_decoder.iou_head_depth, 
+            'iou_head_hidden_dim': self.visual_model.grasp_decoder.iou_head_hidden_dim, 
         }
 
         self.grasp_decoder = GraspDecoder(**grasp_decoder_params)
