@@ -12,6 +12,7 @@ from torch.nn import functional as F
 
 from .image_encoder import ImageEncoderViT
 from .mask_decoder import MaskDecoder
+from .mask_decoder import GraspDecoder
 from .prompt_encoder import PromptEncoder
 
 
@@ -23,7 +24,7 @@ class Sam(nn.Module):
         self,
         image_encoder: ImageEncoderViT,
         prompt_encoder: PromptEncoder,
-        mask_decoder: MaskDecoder,
+        grasp_decoder: MaskDecoder,
         pixel_mean: List[float] = [123.675, 116.28, 103.53],
         pixel_std: List[float] = [58.395, 57.12, 57.375],
     ) -> None:
@@ -42,7 +43,7 @@ class Sam(nn.Module):
         super().__init__()
         self.image_encoder = image_encoder
         self.prompt_encoder = prompt_encoder
-        self.mask_decoder = mask_decoder
+        self.grasp_decoder = grasp_decoder
         self.register_buffer(
             "pixel_mean", torch.Tensor(pixel_mean).view(-1, 1, 1), False
         )
@@ -112,7 +113,7 @@ class Sam(nn.Module):
                 boxes=image_record.get("boxes", None),
                 masks=image_record.get("mask_inputs", None),
             )
-            low_res_masks, iou_predictions = self.mask_decoder(
+            low_res_masks, iou_predictions = self.grasp_decoder(
                 image_embeddings=curr_embedding.unsqueeze(0),
                 image_pe=self.prompt_encoder.get_dense_pe(),
                 sparse_prompt_embeddings=sparse_embeddings,

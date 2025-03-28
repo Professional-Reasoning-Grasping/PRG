@@ -44,8 +44,8 @@ class PRGMetaModel:
         super(PRGMetaModel, self).__init__(config)
 
         self.config = config
-        if not hasattr(self.config, "train_mask_decoder"):
-            self.config.train_mask_decoder = kwargs["train_mask_decoder"]
+        if not hasattr(self.config, "train_grasp_decoder"):
+            self.config.train_grasp_decoder = kwargs["train_grasp_decoder"]
             self.config.out_dim = kwargs["out_dim"]
             self.vision_pretrained = kwargs.get("vision_pretrained", None)
         else:
@@ -57,31 +57,31 @@ class PRGMetaModel:
         self.visual_model = build_sam_vit_h(self.vision_pretrained)
         for param in self.visual_model.parameters():
             param.requires_grad = False
-        if config.train_mask_decoder:
-            self.visual_model.mask_decoder.train()
-            for param in self.visual_model.mask_decoder.parameters():
+        if config.train_grasp_decoder:
+            self.visual_model.grasp_decoder.train()
+            for param in self.visual_model.grasp_decoder.parameters():
                 param.requires_grad = True
 
         grasp_decoder_params = {
-            'transformer_dim': self.visual_model.mask_decoder.transformer_dim,  # 使用与原模型相同的 transformer_dim
-            'transformer': self.visual_model.mask_decoder.transformer,  # 使用相同的 transformer
-            'num_multimask_outputs': self.visual_model.mask_decoder.num_multimask_outputs,  # 同样的 mask 数量
-            'activation': self.visual_model.mask_decoder.activation,  # 使用相同的激活函数
-            'iou_head_depth': self.visual_model.mask_decoder.iou_head_depth,  # IoU 预测的层深度
-            'iou_head_hidden_dim': self.visual_model.mask_decoder.iou_head_hidden_dim,  # IoU 预测的隐藏维度
+            'transformer_dim': self.visual_model.grasp_decoder.transformer_dim,  # 使用与原模型相同的 transformer_dim
+            'transformer': self.visual_model.grasp_decoder.transformer,  # 使用相同的 transformer
+            'num_multimask_outputs': self.visual_model.grasp_decoder.num_multimask_outputs,  # 同样的 mask 数量
+            'activation': self.visual_model.grasp_decoder.activation,  # 使用相同的激活函数
+            'iou_head_depth': self.visual_model.grasp_decoder.iou_head_depth,  # IoU 预测的层深度
+            'iou_head_hidden_dim': self.visual_model.grasp_decoder.iou_head_hidden_dim,  # IoU 预测的隐藏维度
         }
 
         self.grasp_decoder = GraspDecoder(**grasp_decoder_params)
 
-        old_mask_decoder_state_dict = self.visual_model.mask_decoder.state_dict()
+        decoder_state_dict = self.visual_model.grasp_decoder.state_dict()
 
-        new_mask_decoder_state_dict = self.grasp_decoder.state_dict()
+        grasp_decoder_state_dict = self.grasp_decoder.state_dict()
 
-        compatible_state_dict = {k: v for k, v in old_mask_decoder_state_dict.items() if k in new_mask_decoder_state_dict}
+        compatible_state_dict = {k: v for k, v in decoder_state_dict.items() if k in grasp_decoder_state_dict}
 
-        new_mask_decoder_state_dict.update(compatible_state_dict)
+        grasp_decoder_state_dict.update(compatible_state_dict)
 
-        self.grasp_decoder.load_state_dict(new_mask_decoder_state_dict)
+        self.grasp_decoder.load_state_dict(grasp_decoder_state_dict)
 
 
         # Projection layer
@@ -124,7 +124,7 @@ class PRGForCausalLM(LlavaLlamaForCausalLM):
         config,
         **kwargs,
     ):
-        if not hasattr(config, "train_mask_decoder"):
+        if not hasattr(config, "train_grasp_decoder"):
             config.mm_use_im_start_end = kwargs.pop("use_mm_start_end", True)
             config.mm_vision_tower = kwargs.get(
                 "vision_tower", "openai/clip-vit-large-patch14"
