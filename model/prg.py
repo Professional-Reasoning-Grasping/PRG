@@ -66,9 +66,9 @@ class PRGMetaModel:
             'transformer_dim': self.visual_model.grasp_decoder.transformer_dim, 
             'transformer': self.visual_model.grasp_decoder.transformer,
             'num_multimask_outputs': self.visual_model.grasp_decoder.num_multimask_outputs, 
-            'activation': self.visual_model.grasp_decoder.activation, 
-            'iou_head_depth': self.visual_model.grasp_decoder.iou_head_depth, 
-            'iou_head_hidden_dim': self.visual_model.grasp_decoder.iou_head_hidden_dim, 
+            'activation': self.visual_model.grasp_decoder.activation,  
+            'iou_head_depth': self.visual_model.grasp_decoder.iou_head_depth,  
+            'iou_head_hidden_dim': self.visual_model.grasp_decoder.iou_head_hidden_dim,
         }
 
         self.grasp_decoder = GraspDecoder(**grasp_decoder_params)
