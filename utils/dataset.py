@@ -6,7 +6,6 @@ import cv2
 import numpy as np
 import torch
 import torch.nn.functional as F
-from pycocotools import mask
 from transformers import CLIPImageProcessor
 
 from model.llava import conversation as conversation_lib
@@ -16,7 +15,7 @@ from model.llava.mm_utils import tokenizer_image_token
 from model.segment_anything.utils.transforms import ResizeLongestSide
 
 from .conversation import get_default_conv_template
-from .data_processing import get_mask_from_json
+from .data_processing import get_sent_from_json
 from utils.data.cornell_data import CornellDataset
 from .prg_dataset import PRGDataset
 from .utils import (DEFAULT_IM_END_TOKEN, DEFAULT_IM_START_TOKEN,
@@ -296,7 +295,7 @@ class ValDataset(torch.utils.data.Dataset):
         image = cv2.imread(image_path)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         json_path = image_path.replace(".jpg", ".json")
-        _, sampled_sents, is_sentence = get_mask_from_json(json_path, image)
+        sampled_sents, is_sentence = get_sent_from_json(json_path, image)
         sampled_sents = [sampled_sents[0]]
 
         conversations = []

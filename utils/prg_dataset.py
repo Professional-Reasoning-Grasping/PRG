@@ -12,7 +12,7 @@ from transformers import CLIPImageProcessor
 from model.llava import conversation as conversation_lib
 from model.segment_anything.utils.transforms import ResizeLongestSide
 
-from .data_processing import get_mask_from_json
+from .data_processing import get_sent_from_json
 from utils.data.cornell_data import CornellDataset
 from .utils import (ANSWER_LIST, DEFAULT_IMAGE_TOKEN,
                     EXPLANATORY_QUESTION_LIST, LONG_QUESTION_LIST,
@@ -142,7 +142,7 @@ class PRGDataset(torch.utils.data.Dataset):
 
         grasp = [pos,cos,sin,width]
 
-        _, sents, is_sentence = get_mask_from_json(json_path, image)
+        sents, is_sentence = get_sent_from_json(json_path, image)
         if len(sents) >= self.num_classes_per_sample:
             sampled_inds = np.random.choice(
                 list(range(len(sents))), size=self.num_classes_per_sample, replace=False
