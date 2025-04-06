@@ -26,15 +26,6 @@ Training Process: Freeze Fenc, train Fdec, fine-tune F using AdaptiveMixture mod
 - PRG-4K (for professional reasoning grasping and long-text processing capabilities)
 - [LLaVA-Instruct-150k](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K/blob/main/llava_instruct_150k.json) (to retain original LLaVA visual reasoning capabilities)
 
-
-
-## Dataset
-The PRG-4K dataset will be made publicly available after the publication of the paper. lf you are interested in accessingthe data before then, please contact the author via email at maocheng@stumail.neu.edu.cn
-
-## Usage Examples
-
-### Training
-
 ```bash
 deepspeed --master_port=24999 train.py \
   --version="PATH_TO_LLaVA" \
@@ -43,12 +34,10 @@ deepspeed --master_port=24999 train.py \
   --exp_name="prg-7b"
 ```
 
+## Dataset
+The PRG-4K dataset will be made publicly available after the publication of the paper. lf you are interested in accessingthe data before then, please contact the author via email at maocheng@stumail.neu.edu.cn
 
-### Inference
 
-```bash
-python grasp_generator.py --model_path ./model_weights/PRG_model.bin --input ./data/sample_input.png --output ./results/output_image.png --gpu 0
-```
 
 ## License
 
