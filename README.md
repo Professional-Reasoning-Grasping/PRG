@@ -36,11 +36,10 @@ The PRG-4K dataset will be made publicly available after the publication of the 
 ### Training
 
 ```bash
-deepspeed --master_port=24999 train_ds.py \
+deepspeed --master_port=24999 train.py \
   --version="PATH_TO_LLaVA" \
   --dataset_dir='./dataset' \
   --vision_pretrained="PATH_TO_SAM" \
-  --sample_rates="9,3,3,1" \
   --exp_name="prg-7b"
 ```
 
