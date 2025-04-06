@@ -48,7 +48,7 @@ deepspeed --master_port=24999 train_ds.py \
 ### Inference
 
 ```bash
-python inference.py --model_path ./model_weights/PRG_model.bin --input ./data/sample_input.png --output ./results/output_image.png --gpu 0
+python grasp_generator.py --model_path ./model_weights/PRG_model.bin --input ./data/sample_input.png --output ./results/output_image.png --gpu 0
 ```
 
 ## License
