@@ -30,3 +30,35 @@ Training Process: Freeze Fenc, train Fdec, fine-tune F using AdaptiveMixture mod
 
 ## Dataset
 The PRG-4K dataset will be made publicly available after the publication of the paper. lf you are interested in accessingthe data before then, please contact the author via email at maocheng@stumail.neu.edu.cn
+
+## Usage Examples
+
+### Training
+
+```bash
+deepspeed --master_port=24999 train_ds.py \
+  --version="PATH_TO_LLaVA" \
+  --dataset_dir='./dataset' \
+  --vision_pretrained="PATH_TO_SAM" \
+  --sample_rates="9,3,3,1" \
+  --exp_name="prg-7b"
+```
+
+
+### Inference
+
+```bash
+python inference.py --model_path ./model_weights/PRG_model.bin --input ./data/sample_input.png --output ./results/output_image.png --gpu 0
+```
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contributing
+
+We welcome contributions! Please submit an issue or fork the repository and submit a pull request.
+
+## Contact
+
+For questions or collaboration opportunities, please contact us at [maocheng@stumail.neu.edu.cn](mailto:maocheng@stumail.neu.edu.cn).
