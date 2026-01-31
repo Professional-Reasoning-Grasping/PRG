@@ -9,6 +9,8 @@ More updates to follow soon!
 # Video
 https://github.com/user-attachments/assets/fe22cf8a-b482-4024-b2a8-fc0a8ef4de29
 
+💡 *Tip: This video is sped up to **1.25x** for a quicker overview.*
+
 
 ## Installation
 ```pip install -r requirements.txt```
